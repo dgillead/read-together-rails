@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReadTogether</title>
+    <title>Read Together</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,35 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Read Together</a>
+        </div>
+
+        <form class="navbar-form navbar-left" role="search" action="/search">
+          <div class="form-group">
+            <input type="text" name="q" class="form-control" placeholder="Find Book...">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+
+        <ul class='nav navbar-nav navbar-right'>
+          <% if current_user %>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to 'Register', new_user_registration_path %></li>
+          <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
