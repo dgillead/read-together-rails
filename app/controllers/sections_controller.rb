@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_discussion, only: [:new, :create]
-  before_action :find_section, only: [:show]
+  before_action :find_discussion, only: [:new, :create, :destroy]
+  before_action :find_section, only: [:show, :destroy, :edit, :update]
 
   def new
     @section = Section.new
@@ -17,6 +17,23 @@ class SectionsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @book_discussion = @section.book_discussion
+    @section.destroy
+    redirect_to @book_discussion
+  end
+
+  def edit
+  end
+
+  def update
+    if @section.update_attributes(section_params)
+      redirect_to @section
+    else
+      render :edit
+    end
   end
 
   private

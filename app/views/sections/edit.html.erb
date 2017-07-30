@@ -1,0 +1,14 @@
+<h1 class="text-center"><%= @section.title %></h1>
+
+<%= form_for (@section) do |f| %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, required: 'required' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
