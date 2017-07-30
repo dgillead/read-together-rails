@@ -4,4 +4,5 @@
 
 <% if current_user.id == @book_discussion.user_id %>
   <%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= link_to 'Create Discussion Section', new_section_path(book_discussion_id: @book_discussion.id) %>
 <% end %>
