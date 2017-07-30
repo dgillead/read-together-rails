@@ -3,6 +3,11 @@
 <p class="text-center">By: <%= @section.book_discussion.book_author %></p>
 <p class="text-center"><%= image_tag(@section.book_discussion.book_image_url, :alt => "Cover Image") %></p>
 
+<% if @section.book_discussion.user_id == current_user.id %>
+<%= link_to 'Delete Section', section_path(@section), method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to 'Edit Section', edit_section_path(@section) %>
+<% end %>
+
 <hr>
 
 <div id="disqus-container" class="center-block">
@@ -23,8 +28,3 @@
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-
-<% if @section.book_discussion.user_id == current_user.id %>
-  <%= link_to 'Delete Section', section_path(@section), method: :delete, data: {confirm: "Are you sure?"} %>
-  <%= link_to 'Edit Section', edit_section_path(@section) %>
-<% end %>
