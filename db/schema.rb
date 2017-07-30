@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20170727213028) do
   create_table "book_discussions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "book_title", null: false
-    t.string "book_url", null: false
     t.string "book_image_url", null: false
+    t.string "book_author", null: false
     t.text "discussion_participants", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
