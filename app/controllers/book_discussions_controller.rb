@@ -1,6 +1,6 @@
 class BookDiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_discussion, only: [:show]
+  before_action :find_discussion, only: [:show, :destroy]
 
   def search
     @books = FindBooks.new(query: params[:q]).call
@@ -16,6 +16,11 @@ class BookDiscussionsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @book_discussion.destroy
+    redirect_to root_path
   end
 
   private
