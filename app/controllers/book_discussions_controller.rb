@@ -2,6 +2,9 @@ class BookDiscussionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_discussion, only: [:show, :destroy]
 
+  def index
+  end
+
   def search
     @books = FindBooks.new(query: params[:q]).call
   end
