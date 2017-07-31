@@ -14,6 +14,7 @@ class BookDiscussionsController < ApplicationController
   def invite
     @invite_email = params[:email]
     @book_discussion.discussion_participants.push(@invite_email)
+    UserMailer.invitation(@invite_email).deliver_now!
     if @book_discussion.save
       flash.now[:success] = "User has been invited!"
       render :show
