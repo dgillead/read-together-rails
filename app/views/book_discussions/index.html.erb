@@ -18,12 +18,10 @@
   <h2 class="text-center">Discussions You're Invited To</h2>
 
   <% if @book_discussions == [] %>
-    <p class="text-center">No discussions exist yet.</p>
+    <p class="text-center">You haven't been invited to any discussions yet.</p>
   <% else %>
-    <% user_invited = false %>
     <% @book_discussions.each do |discussion| %>
       <% if discussion.discussion_participants.include?(current_user.email) %>
-        <% user_invited = true %>
         <ul class="list-group">
           <li class="list-group-item text-center">
             <p><%= link_to discussion.book_title, discussion %></p>
@@ -32,9 +30,6 @@
           </li>
         </ul>
       <% end %>
-    <% end %>
-    <% if user_invited == false %>
-      <p>You haven't been invited to any discussions yet.</p>
     <% end %>
   <% end %>
 <% end %>

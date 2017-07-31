@@ -3,7 +3,12 @@ class BookDiscussionsController < ApplicationController
   before_action :find_discussion, only: [:show, :destroy, :invite]
 
   def index
-    @book_discussions = BookDiscussion.all
+    @book_discussions = []
+    BookDiscussion.find_each do |discussion|
+      if discussion.discussion_participants.include?(current_user.email)
+        @book_discussions << discussion
+      end
+    end
   end
 
   def invite
