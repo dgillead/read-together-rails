@@ -25,14 +25,6 @@ ActiveRecord::Schema.define(version: 20170727213028) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "section_id", null: false
-    t.integer "user_id", null: false
-    t.string "content", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "sections", force: :cascade do |t|
     t.integer "book_discussion_id", null: false
     t.string "title", null: false

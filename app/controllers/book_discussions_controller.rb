@@ -23,7 +23,7 @@ class BookDiscussionsController < ApplicationController
 
   def destroy
     @book_discussion.destroy
-    redirect_to root_path
+    redirect_to '/book_discussions'
   end
 
   private

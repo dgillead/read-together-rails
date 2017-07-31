@@ -7,5 +7,10 @@
 }
 
 #disqus-container {
-  width: 50%;
+  width: 70%;
+}
+
+#book-background h1 {
+  color: #FFF;
+  letter-spacing: 2px;
 }
