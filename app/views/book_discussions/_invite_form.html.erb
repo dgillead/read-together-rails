@@ -1,0 +1,8 @@
+<form action="/invite">
+  <p>Enter the email address of the user you would like to invite to this discussion:</p>
+  <div class="form-group">
+    <input type="email" name="email" class="form-control" placeholder="Enter email">
+  </div>
+  <%= hidden_field_tag(:id, book_discussion.id) %>
+  <button type="submit" class="btn btn-default">Invite</button>
+</form>

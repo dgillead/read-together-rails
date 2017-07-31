@@ -1,8 +1,16 @@
 class BookDiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_discussion, only: [:show, :destroy]
+  before_action :find_discussion, only: [:show, :destroy, :invite]
 
   def index
+    @book_discussions = BookDiscussion.all
+  end
+
+  def invite
+    @invite_email = params[:email]
+    @book_discussion.discussion_participants.push(@invite_email)
+    @book_discussion.save
+    render :show
   end
 
   def search

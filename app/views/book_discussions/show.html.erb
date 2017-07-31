@@ -1,16 +1,19 @@
-<h1 class="text-center">Discussion for: <%= @book_discussion.book_title %></h1>
-<p class="text-center">By: <%= @book_discussion.book_author %></p>
-<p class="text-center"><%= image_tag(@book_discussion.book_image_url, :alt => "Cover Image") %></p>
+<% if current_user.id == @book_discussion.user_id || @book_discussion.discussion_participants.include?(current_user.email) %>
+  <h1 class="text-center">Discussion for: <%= @book_discussion.book_title %></h1>
+  <p class="text-center">By: <%= @book_discussion.book_author %></p>
+  <p class="text-center"><%= image_tag(@book_discussion.book_image_url, :alt => "Cover Image") %></p>
 
-<ul class="list-group">
-  <% @book_discussion.sections.all.each do |section| %>
-    <% if @book_discussion.user_id == current_user.id || @book_discussion.discussion_participants.include?(current_user.id) %>
+  <ul class="list-group">
+    <% @book_discussion.sections.all.each do |section| %>
       <li class=list-group-item><%= link_to section.title, section %></li>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
 
-<% if current_user.id == @book_discussion.user_id %>
-  <%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %>
-  <%= link_to 'Create Discussion Section', new_section_path(book_discussion_id: @book_discussion.id) %>
+  <% if current_user.id == @book_discussion.user_id %>
+    <%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= link_to 'Create Discussion Section', new_section_path(book_discussion_id: @book_discussion.id) %>
+    <%= render 'invite_form', { book_discussion: @book_discussion } %>
+  <% end %>
+<% else %>
+  <h1 class="text-center">Sorry, you're not permitted to view this discussion.</h1>
 <% end %>
