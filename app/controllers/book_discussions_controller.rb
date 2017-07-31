@@ -9,8 +9,10 @@ class BookDiscussionsController < ApplicationController
   def invite
     @invite_email = params[:email]
     @book_discussion.discussion_participants.push(@invite_email)
-    @book_discussion.save
-    render :show
+    if @book_discussion.save
+      flash[:success] = "User has been invited!"
+      render :show
+    end
   end
 
   def search
