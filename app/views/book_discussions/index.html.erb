@@ -4,7 +4,11 @@
   <% if current_user.book_discussions.any? %>
     <ul class="list-group">
       <% current_user.book_discussions.each do |discussion| %>
-      <li class="list-group-item"><%= link_to discussion.book_title, discussion %></li>
+      <li class="list-group-item text-center">
+        <p><%= link_to discussion.book_title, discussion %></p>
+        <p>By: <%= discussion.book_author %></p>
+        <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+      </li>
       <% end %>
     </ul>
   <% else %>
@@ -12,14 +16,25 @@
   <% end %>
 
   <h2 class="text-center">Discussions You're Invited To</h2>
-  <% @book_discussions.each do |discussion| %>
-      <ul class="list-group">
-        <% if discussion.discussion_participants.include?(current_user.email) %>
-        <li class="list-group-item"><%= link_to discussion.book_title, discussion %></li>
-      </ul>
-        <% else %>
-      <p class="text-center">You haven't been invited to any discussions.</p>
+
+  <% if @book_discussions == [] %>
+    <p class="text-center">No discussions exist yet.</p>
+  <% else %>
+    <% user_invited = false %>
+    <% @book_discussions.each do |discussion| %>
+      <% if discussion.discussion_participants.include?(current_user.email) %>
+        <% user_invited = true %>
+        <ul class="list-group">
+          <li class="list-group-item text-center">
+            <p><%= link_to discussion.book_title, discussion %></p>
+            <p>By: <%= discussion.book_author %></p>
+            <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+          </li>
+        </ul>
+      <% end %>
+    <% end %>
+    <% if user_invited == false %>
+      <p>You haven't been invited to any discussions yet.</p>
     <% end %>
   <% end %>
-
 <% end %>
