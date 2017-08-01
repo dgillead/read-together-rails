@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :book_discussions
   resources :sections
   resources :comments
+
+  get '*unmatched_route', to: 'application#not_found'
 end

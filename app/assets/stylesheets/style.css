@@ -26,11 +26,6 @@ h2.header-style {
   width: 70%;
 }
 
-#book-background h1 {
-  color: #FFF;
-  letter-spacing: 2px;
-}
-
 #delete {
   color: black;
 }
@@ -91,6 +86,16 @@ a:visited {
 
 .form-input {
   width: 100%;
+}
+
+.errors-container ul {
+  list-style-type: none;
+}
+
+#book-background .jumbotron {
+  background-color: rgba(238, 238, 238, 0.8);
+  width: 80%;
+  border-radius: 10px;
 }
 
 hr.discussion-divider {
