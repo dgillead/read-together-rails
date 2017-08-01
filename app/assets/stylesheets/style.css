@@ -6,10 +6,6 @@
   background-size: cover;
 }
 
-body {
-
-}
-
 #disqus-container {
   width: 70%;
 }
@@ -32,6 +28,20 @@ body {
   width: 60%;
 }
 
+#sign-up-container {
+  width: 15%;
+  margin: 0 auto;
+}
+
+#devise-errors-container {
+  width: 50%;
+}
+
+.field {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .bigger-links {
   font-size: 20px;
 }
@@ -49,10 +59,10 @@ a:visited {
   color: black;
 }
 
-li {
-  border: solid 1px black;
-}
-
 .input {
   display: inline;
+}
+
+.form-input {
+  width: 100%;
 }

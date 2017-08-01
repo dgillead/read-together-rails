@@ -1,5 +1,5 @@
 <h1 class="text-center"><%= @section.title %></h1>
-<h2 class="text-center"><%= @section.book_discussion.book_title %></h2>
+<h2 class="text-center"><%= link_to @section.book_discussion.book_title, @section.book_discussion %></h2>
 <p class="text-center">By: <%= @section.book_discussion.book_author %></p>
 <p class="text-center"><%= image_tag(@section.book_discussion.book_image_url, :alt => "Cover Image") %></p>
 
@@ -17,7 +17,7 @@
       </ul>
     </div>
   </div>
-  
+
 <% end %>
 
 <hr>
