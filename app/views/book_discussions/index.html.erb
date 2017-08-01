@@ -5,7 +5,7 @@
     <ul class="list-group">
       <% current_user.book_discussions.each do |discussion| %>
       <li class="list-group-item text-center">
-        <p><%= link_to discussion.book_title, discussion %></p>
+        <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
         <p>By: <%= discussion.book_author %></p>
         <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
       </li>
@@ -24,7 +24,7 @@
       <% if discussion.discussion_participants.include?(current_user.email) %>
         <ul class="list-group">
           <li class="list-group-item text-center">
-            <p><%= link_to discussion.book_title, discussion %></p>
+            <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
             <p>By: <%= discussion.book_author %></p>
             <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
           </li>
