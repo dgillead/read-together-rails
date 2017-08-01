@@ -5,6 +5,7 @@ class CreateBookDiscussions < ActiveRecord::Migration[5.1]
       t.string :book_title, null: false
       t.string :book_image_url, null: false
       t.string :book_author, null: false
+      t.string :status, null: false
       t.text :discussion_participants, array: true, default: []
       t.timestamps
     end

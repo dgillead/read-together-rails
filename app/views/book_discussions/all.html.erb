@@ -1,0 +1,18 @@
+<h1 class="text-center header-style">All Public Discussions</h1>
+
+<hr class="discussion-divider">
+
+<% if @book_discussions == [] %>
+  <p class="text-center">No public discussions exist. You can create your own and invite your friends or set it to public to allow anyone to participate.</p>
+<% else %>
+  <ul class="list-group">
+    <% @book_discussions.each do |discussion| %>
+    <li class="list-group-item text-center" id="invited-discussions">
+      <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
+      <p>By: <%= discussion.book_author %></p>
+      <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+    </li>
+    <hr>
+    <% end %>
+  </ul>
+<% end %>

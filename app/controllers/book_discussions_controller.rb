@@ -1,6 +1,6 @@
 class BookDiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_discussion, only: [:show, :destroy, :invite]
+  before_action :find_discussion, only: [:show, :destroy, :invite, :change_status]
 
   def index
     @book_discussions = []
@@ -21,6 +21,10 @@ class BookDiscussionsController < ApplicationController
     end
   end
 
+  def all
+    @book_discussions = BookDiscussion.where("status = ?", 'public')
+  end
+
   def search
     @books = FindBooks.new(query: params[:q]).call
     if @books == []
@@ -31,11 +35,22 @@ class BookDiscussionsController < ApplicationController
 
   def create
     @book_discussion = current_user.book_discussions.new(book_params)
+    @book_discussion[:status] = 'private'
     if @book_discussion.save
       redirect_to @book_discussion
     else
       render :search
     end
+  end
+
+  def change_status
+    if @book_discussion.status == 'private'
+      @book_discussion[:status] = 'public'
+    else
+      @book_discussion[:status] = 'private'
+    end
+    @book_discussion.save
+    redirect_to @book_discussion
   end
 
   def show

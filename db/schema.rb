@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170727213028) do
     t.string "book_title", null: false
     t.string "book_image_url", null: false
     t.string "book_author", null: false
+    t.string "status", null: false
     t.text "discussion_participants", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

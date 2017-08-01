@@ -1,4 +1,4 @@
-<% if current_user.id == @book_discussion.user_id || @book_discussion.discussion_participants.include?(current_user.email) %>
+<% if current_user.id == @book_discussion.user_id || @book_discussion.discussion_participants.include?(current_user.email) ||@book_discussion.status == 'public' %>
   <h1 class="text-center header-style"><%= @book_discussion.book_title %></h1>
   <p class="text-center">By: <%= @book_discussion.book_author %></p>
   <p class="text-center"><%= image_tag(@book_discussion.book_image_url, :alt => "Cover Image") %></p>
@@ -13,6 +13,11 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li><%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure? This will delete all sections and comments for this discussion as well."} %></li>
           <li><%= link_to 'Create Section', new_section_path(book_discussion_id: @book_discussion.id) %></li>
+          <% if @book_discussion.status == 'public' %>
+            <li><%= link_to 'Make Private', status_path(id: @book_discussion.id) %></li>
+          <% else %>
+            <li><%= link_to 'Make Public', status_path(id: @book_discussion.id) %></li>
+          <% end %>
         </ul>
       </div>
     </div>
