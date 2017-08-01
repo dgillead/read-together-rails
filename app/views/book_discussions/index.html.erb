@@ -1,5 +1,5 @@
 <% if current_user %>
-  <h2 class="text-center">Discussions You've Created</h2>
+  <h2 class="text-center header-style">Discussions You've Created</h2>
 
   <hr class="discussion-divider">
 
@@ -19,10 +19,12 @@
   <% end %>
 
 
-  <% if @book_discussions != [] %>
-    <h2 class="text-center">Discussions You're Invited To</h2>
+  <h2 class="text-center header-style">Discussions You're Invited To</h2>
+  
+  <hr class="discussion-divider">
 
-    <hr class="discussion-divider">
+  <% if @book_discussions != [] %>
+
         <ul class="list-group">
           <% @book_discussions.each do |discussion| %>
           <% if discussion.discussion_participants.include?(current_user.email) %>

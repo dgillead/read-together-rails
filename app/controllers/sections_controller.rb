@@ -10,7 +10,7 @@ class SectionsController < ApplicationController
   def create
     @section = @book_discussion.sections.new(section_params)
     if @section.save
-      redirect_to @section
+      redirect_to @section.book_discussion
     else
       render :new
     end

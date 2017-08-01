@@ -1,16 +1,18 @@
-<h1 class="text-center">Search Results</h1>
+<h1 class="text-center header-style">Search Results</h1>
+
+<hr class="discussion-divider">
 
 <% @books.each do |book| %>
-<hr>
-  <div class="row">
-    <div class="col-xs-2 text-right">
-      <%= image_tag(book[2], :alt => "Cover Image") %>
+  <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-2 text-center">
+        <%= image_tag(book[2], :alt => "Cover Image") %>
+      </div>
+      <div class="col-xs-12 col-sm-10" id="book-search-info">
+        <p><%= book[0] %></p>
+        <p>By: <%= book[1] %></p>
+        <%= link_to 'Create Discussion', book_discussions_path(book_title: book[0], book_image_url: book[2], book_author: book[1]), method: :post, class: 'bigger-links' %>
+      </div>
     </div>
-    <div class="col-xs-10 text-left">
-      <p><%= book[0] %></p>
-      <p>By: <%= book[1] %></p>
-      <%= link_to 'Create Discussion', book_discussions_path(book_title: book[0], book_image_url: book[2], book_author: book[1]), method: :post, class: 'bigger-links' %>
-    </div>
-  </div>
-<hr>
+  <hr>
 <% end %>
