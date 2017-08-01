@@ -74,6 +74,7 @@ h2.header-style {
 a:link,
 a:visited {
   color: black;
+  text-decoration: underline;
 }
 
 .input {

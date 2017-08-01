@@ -41,5 +41,12 @@
     <% end %>
 
     <%= yield %>
+
+    <% if current_user %>
+      <footer>
+        <hr>
+        <p class="text-right">All book data is provided by <a href="https://www.goodreads.com/">GoodReads</a>.</p>
+      </footer>
+    <% end %>
   </body>
 </html>
