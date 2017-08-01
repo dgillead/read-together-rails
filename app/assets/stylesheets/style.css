@@ -53,6 +53,10 @@ h2.header-style {
   border: none;
 }
 
+#discussion-status-container {
+  margin-top: 10px;
+}
+
 .user-container {
   width: 15%;
   margin: 0 auto;
