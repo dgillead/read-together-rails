@@ -2,14 +2,17 @@
 
   <p class="text-center">A section is a specific topic related to the book you would like to discuss (ex: chapters, specific characters, memorable moments, etc...)</p>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, required: 'required' %>
+  <div class="text-center">
+    <div class="field input">
+      <%= f.label :title %>
+      <%= f.text_field :title, required: 'required' %>
+    </div>
+
+
+    <div class="actions input">
+      <%= hidden_field_tag(:book_discussion_id, book_discussion.id) %>
+      <%= f.submit %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= hidden_field_tag(:book_discussion_id, book_discussion.id) %>
-    <%= f.submit %>
-  </div>
-  
 <% end %>

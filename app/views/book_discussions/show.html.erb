@@ -4,7 +4,6 @@
   <p class="text-center"><%= image_tag(@book_discussion.book_image_url, :alt => "Cover Image") %></p>
 
   <% if current_user.id == @book_discussion.user_id %>
-
     <div class="text-center">
       <div class="dropdown">
         <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -12,7 +11,7 @@
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li><%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %></li>
+          <li><%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure? This will delete all sections and comments for this discussion as well."} %></li>
           <li><%= link_to 'Create Section', new_section_path(book_discussion_id: @book_discussion.id) %></li>
         </ul>
       </div>
@@ -26,7 +25,6 @@
         <%= render 'invite_form', { book_discussion: @book_discussion } %>
       </div>
     </div>
-
   <% end %>
 
   <hr>

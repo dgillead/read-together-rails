@@ -2,13 +2,15 @@
 
 <%= form_for (@section) do |f| %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, required: 'required' %>
-  </div>
+  <div class="text-center">
+    <div class="field input">
+      <%= f.label :title %>
+      <%= f.text_field :title, required: 'required' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
+    <div class="actions input">
+      <%= f.submit %>
+    </div>
   </div>
 
 <% end %>

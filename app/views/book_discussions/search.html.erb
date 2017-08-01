@@ -8,9 +8,9 @@
     </div>
     <div class="col-xs-10 text-left">
       <p><%= book[0] %></p>
-      <p><%= book[1] %></p>
+      <p>By: <%= book[1] %></p>
+      <%= link_to 'Create Discussion', book_discussions_path(book_title: book[0], book_image_url: book[2], book_author: book[1]), method: :post, id: 'create-discussion-link' %>
     </div>
-    <button class="btn"><%= link_to 'Create Discussion', book_discussions_path(book_title: book[0], book_image_url: book[2], book_author: book[1]), method: :post %></button>
   </div>
 <hr>
 <% end %>

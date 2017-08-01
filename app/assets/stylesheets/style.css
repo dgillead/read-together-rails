@@ -6,6 +6,10 @@
   background-size: cover;
 }
 
+body {
+
+}
+
 #disqus-container {
   width: 70%;
 }
@@ -28,8 +32,16 @@
   width: 60%;
 }
 
+#create-discussion-link {
+  font-size: 20px;
+}
+
 .btn-group .btn {
   width: 50%;
+}
+
+.dropdown {
+  display: inline-block;
 }
 
 a:link,
@@ -41,6 +53,6 @@ li {
   border: solid 1px black;
 }
 
-.dropdown {
-  display: inline-block;
+.input {
+  display: inline;
 }
