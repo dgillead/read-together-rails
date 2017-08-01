@@ -40,6 +40,10 @@ h2.header-style {
   margin-top: 10px;
 }
 
+#all-discussions {
+  margin-right: 10px;
+}
+
 #sections-container {
   width: 60%;
 }
