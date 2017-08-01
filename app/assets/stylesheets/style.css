@@ -14,3 +14,20 @@
   color: #FFF;
   letter-spacing: 2px;
 }
+
+#delete {
+  color: black;
+}
+
+#invite-container {
+  width: 60%;
+}
+
+.btn-group .btn {
+  width: 50%;
+}
+
+a:link,
+a:visited {
+  color: black;
+}

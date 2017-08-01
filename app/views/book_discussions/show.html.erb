@@ -4,9 +4,21 @@
   <p class="text-center"><%= image_tag(@book_discussion.book_image_url, :alt => "Cover Image") %></p>
 
   <% if current_user.id == @book_discussion.user_id %>
-    <%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %>
-    <%= link_to 'Create Discussion Section', new_section_path(book_discussion_id: @book_discussion.id) %>
-    <%= render 'invite_form', { book_discussion: @book_discussion } %>
+
+    <div class="text-center">
+      <p><%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %></p>
+      <p><%= link_to 'Create Section', new_section_path(book_discussion_id: @book_discussion.id) %></p>
+    </div>
+
+    <div id="invite-container" class="center-block text-center">
+      <button data-toggle="collapse" data-target="#invite" class="btn btn-info">Invite User</button>
+
+      <div id="invite" class="collapse">
+        <br>
+        <%= render 'invite_form', { book_discussion: @book_discussion } %>
+      </div>
+    </div>
+
   <% end %>
 
   <hr>

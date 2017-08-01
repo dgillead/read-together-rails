@@ -39,6 +39,7 @@ class BookDiscussionsController < ApplicationController
   end
 
   def show
+    redirect_to '/404' unless @book_discussion
   end
 
   def destroy
@@ -55,5 +56,4 @@ class BookDiscussionsController < ApplicationController
   def book_params
     params.permit(:book_title, :book_author, :book_image_url)
   end
-
 end
