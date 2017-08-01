@@ -28,13 +28,9 @@
   width: 60%;
 }
 
-#sign-up-container {
+.user-container {
   width: 15%;
   margin: 0 auto;
-}
-
-#devise-errors-container {
-  width: 50%;
 }
 
 .field {
