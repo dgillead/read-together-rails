@@ -8,18 +8,18 @@
 
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, class: "form-input" %>
+      <%= f.email_field :email, autofocus: true, class: "form-input", required: "required" %>
     </div>
 
     <div class="field">
       <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, class: "form-input" %>
+      <%= f.text_field :first_name, class: "form-input", required: "required" %>
     </div>
 
 
     <div class="field">
       <%= f.label :last_name %><br />
-      <%= f.text_field :last_name, class: "form-input" %>
+      <%= f.text_field :last_name, class: "form-input", required: "required" %>
     </div>
 
     <div class="field">
@@ -27,12 +27,12 @@
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "off", class: "form-input" %>
+      <%= f.password_field :password, autocomplete: "off", class: "form-input", required: "required" %>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-input" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-input", required: "required" %>
     </div>
 
     <div class="actions">
