@@ -5,5 +5,4 @@ class HomeController < ApplicationController
       redirect_to '/book_discussions'
     end
   end
-
 end

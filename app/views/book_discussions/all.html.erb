@@ -3,7 +3,7 @@
 <hr class="discussion-divider">
 
 <% if @book_discussions == [] %>
-  <p class="text-center">No public discussions exist. You can create your own and invite your friends or set it to public to allow anyone to participate.</p>
+  <p class="text-center">No public discussions exist. You can create your own private discussion and invite your friends or set it to public to allow anyone to participate. <br> To create a discussion first search for a book you would like to discuss.</p>
 <% else %>
   <ul class="list-group">
     <% @book_discussions.each do |discussion| %>
