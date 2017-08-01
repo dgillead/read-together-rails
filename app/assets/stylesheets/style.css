@@ -88,10 +88,6 @@ a:visited {
   width: 100%;
 }
 
-.errors-container ul {
-  list-style-type: none;
-}
-
 #book-background .jumbotron {
   background-color: rgba(238, 238, 238, 0.8);
   width: 80%;
