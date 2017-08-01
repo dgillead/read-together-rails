@@ -6,8 +6,16 @@
   <% if current_user.id == @book_discussion.user_id %>
 
     <div class="text-center">
-      <p><%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %></p>
-      <p><%= link_to 'Create Section', new_section_path(book_discussion_id: @book_discussion.id) %></p>
+      <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Options
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><%= link_to 'Delete Discussion', book_discussion_path(@book_discussion), method: :delete, data: {confirm: "Are you sure?"} %></li>
+          <li><%= link_to 'Create Section', new_section_path(book_discussion_id: @book_discussion.id) %></li>
+        </ul>
+      </div>
     </div>
 
     <div id="invite-container" class="center-block text-center">
@@ -23,11 +31,13 @@
 
   <hr>
 
-  <ul class="list-group">
-    <% @book_discussion.sections.all.each do |section| %>
-      <li class=list-group-item><%= link_to section.title, section %></li>
-    <% end %>
-  </ul>
+  <div id="sections-container" class="center-block">
+    <ul class="list-group text-center">
+      <% @book_discussion.sections.all.each do |section| %>
+        <li class=list-group-item><%= link_to section.title, section %></li>
+      <% end %>
+    </ul>
+  </div>
 
 <% else %>
   <h1 class="text-center">Sorry, you're not permitted to view this discussion.</h1>

@@ -21,6 +21,11 @@
 
 #invite-container {
   width: 60%;
+  margin-top: 10px;
+}
+
+#sections-container {
+  width: 60%;
 }
 
 .btn-group .btn {
@@ -30,4 +35,12 @@
 a:link,
 a:visited {
   color: black;
+}
+
+li {
+  border: solid 1px black;
+}
+
+.dropdown {
+  display: inline-block;
 }
