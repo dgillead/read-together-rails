@@ -82,5 +82,25 @@ RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
     end
   end
 
+  describe 'DELETE #destroy' do
+    it 'destroys the requested book discussion' do
+      sign_in(user)
+      valid_private_book_attributes[:user_id] = user.id
+      book_discussion = BookDiscussion.create!(valid_private_book_attributes)
+
+      expect{ delete :destroy, params: { id: book_discussion.to_param } }.to change{ BookDiscussion.count }.by(-1)
+    end
+
+    it 'redirects to the book discussions index' do
+      sign_in(user)
+      valid_private_book_attributes[:user_id] = user.id
+      book_discussion = BookDiscussion.create!(valid_private_book_attributes)
+
+      delete :destroy, params: { id: book_discussion.to_param }
+
+      expect(response).to redirect_to('/book_discussions')
+    end
+  end
+
   DatabaseCleaner.clean
 end
