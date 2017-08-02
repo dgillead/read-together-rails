@@ -94,5 +94,36 @@ RSpec.describe SectionsController, type: :controller, vcr: true do
     end
   end
 
+  describe 'PUT #update' do
+    it 'updates the existing section' do
+      sign_in(user)
+      valid_section_attributes[:book_discussion_id] = book_discussion.id
+      section = Section.create!(book_discussion_id: book_discussion.id, title: 'Title Old')
+
+      put :update, params: { book_discussion_id: book_discussion.to_param, id: section.id, section: valid_section_attributes }
+      section.reload
+
+      expect(section.title).to eq('Title')
+    end
+
+    it 'does not allow the book discussion id to change' do
+      sign_in(user)
+      section = Section.create!(book_discussion_id: book_discussion.id, title: 'Title Old')
+      attributes = valid_section_attributes.merge(book_discussion_id: 5)
+
+      expect { put :update, params: { book_discussion_id: book_discussion.to_param, id: section.id, section: attributes } }.not_to change{ section.reload.book_discussion_id }
+    end
+
+    it 'redirects to the updated section' do
+      sign_in(user)
+      valid_section_attributes[:book_discussion_id] = book_discussion.id
+      section = Section.create!(book_discussion_id: book_discussion.id, title: 'Title Old')
+
+      put :update, params: { book_discussion_id: book_discussion.to_param, id: section.id, section: valid_section_attributes }
+
+      expect(response).to redirect_to(section)
+    end
+  end
+
   DatabaseCleaner.clean
 end
