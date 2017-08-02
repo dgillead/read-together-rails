@@ -61,5 +61,25 @@ RSpec.describe SectionsController, type: :controller, vcr: true do
     end
   end
 
+  describe 'DELETE #destroy' do
+    it 'destroys the selected product' do
+      sign_in(user)
+      valid_section_attributes[:book_discussion_id] = book_discussion.id
+      section = Section.create!(valid_section_attributes)
+
+      expect { delete :destroy, params: { book_discussion_id: book_discussion.to_param, id: section.id } }.to change{ book_discussion.sections.count }.by(-1)
+    end
+
+    it 'redirects to the book discussion the section belonged to' do
+      sign_in(user)
+      valid_section_attributes[:book_discussion_id] = book_discussion.id
+      section = Section.create!(valid_section_attributes)
+
+      delete :destroy, params: { book_discussion_id: book_discussion.to_param, id: section.id }
+
+      expect(response).to redirect_to(book_discussion)
+    end
+  end
+
   DatabaseCleaner.clean
 end
