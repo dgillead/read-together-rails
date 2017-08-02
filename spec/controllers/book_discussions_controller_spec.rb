@@ -3,7 +3,7 @@ require 'database_cleaner'
 
 DatabaseCleaner.strategy = :truncation
 
-RSpec.describe BookDiscussionsController, type: :controller do
+RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
   render_views
 
   let(:valid_user_attributes) {
