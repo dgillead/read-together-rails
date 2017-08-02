@@ -102,5 +102,18 @@ RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
     end
   end
 
+  describe 'GET #change_status' do
+    it 'changes the status of the book discussion' do
+      sign_in(user)
+      valid_private_book_attributes[:user_id] = user.id
+      book_discussion = BookDiscussion.create!(valid_private_book_attributes)
+
+      get :change_status, params: { id: book_discussion.to_param }
+      book_discussion.reload
+
+      expect(book_discussion.status).to eq('public')
+    end
+  end
+
   DatabaseCleaner.clean
 end
