@@ -26,7 +26,7 @@ class BookDiscussionsController < ApplicationController
   end
 
   def search
-    @books = FindBooks.new(query: params[:q]).call
+    @books = FindBooks.new(params[:q]).call
     if @books == []
       flash.now[:error] = "Sorry, we couldn\'t find any books for that search."
       render :search
