@@ -81,5 +81,18 @@ RSpec.describe SectionsController, type: :controller, vcr: true do
     end
   end
 
+  describe 'GET #edit' do
+    it 'shows a form with the existing section title' do
+      sign_in(user)
+      valid_section_attributes[:book_discussion_id] = book_discussion.id
+      section = Section.create!(valid_section_attributes)
+
+      get :edit, params: { book_discussion_id: book_discussion.to_param, id: section.id }
+
+      expect(response.body).to include('Title')
+      expect(response.body).to include('Update Section')
+    end
+  end
+
   DatabaseCleaner.clean
 end
