@@ -62,6 +62,23 @@ RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
 
         expect { post :create, params: { book_title: 'The Book', book_author: 'me', book_image_url: 'https://images.gr-assets.com/books/1344371661m/6424171.jpg' } }.to change{ BookDiscussion.count }.by(1)
       end
+
+      it 'assigns newly created book discussion as @book_discussion' do
+        sign_in(user)
+
+        post :create, params: { book_title: 'The Book', book_author: 'me', book_image_url: 'https://images.gr-assets.com/books/1344371661m/6424171.jpg' }
+
+        expect(assigns(:book_discussion)).to be_a(BookDiscussion)
+        expect(assigns(:book_discussion)).to be_persisted
+      end
+
+      it 'redirects to the created discussion' do
+        sign_in(user)
+
+        post :create, params: { book_title: 'The Book', book_author: 'me', book_image_url: 'https://images.gr-assets.com/books/1344371661m/6424171.jpg' }
+
+        expect(response).to redirect_to(BookDiscussion.last)
+      end
     end
   end
 
