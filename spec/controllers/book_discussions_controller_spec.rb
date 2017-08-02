@@ -55,5 +55,15 @@ RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
     end
   end
 
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new BookDiscussion' do
+        sign_in(user)
+
+        expect { post :create, params: { book_title: 'The Book', book_author: 'me', book_image_url: 'https://images.gr-assets.com/books/1344371661m/6424171.jpg' } }.to change{ BookDiscussion.count }.by(1)
+      end
+    end
+  end
+
   DatabaseCleaner.clean
 end
