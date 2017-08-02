@@ -28,6 +28,14 @@ RSpec.describe SectionsController, type: :controller, vcr: true do
 
       expect{ post :create, params: { book_discussion_id: book_discussion.to_param, section: valid_section_attributes } }.to change{ book_discussion.sections.count }.by(1)
     end
+
+    it 'redirects to the book discussion the section belongs to' do
+      sign_in(user)
+
+      post :create, params: { book_discussion_id: book_discussion.to_param, section: valid_section_attributes }
+
+      expect(response).to redirect_to(book_discussion)
+    end
   end
 
   DatabaseCleaner.clean
