@@ -9,7 +9,7 @@ class FindBooks
 
   def call
     query = @query.gsub(/\s/,'%20')
-    body = HTTP.get("https://www.goodreads.com/search/index.xml?key=#{Rails.application.secrets.goodreads_api_key}&q=#{query}").to_s
+    body = HTTP.get("https://www.goodreads.com/search/index.xml?key=#{ENV['goodreads_key']}&q=#{query}").to_s
     body_hash = Hash.from_xml(body)
     body_hash = body_hash['GoodreadsResponse']['search']['results']['work']
     if body_hash[0]['best_book']['title'] == 'Goodreads is over capacity.'
