@@ -30,6 +30,9 @@ class BookDiscussionsController < ApplicationController
     if @books == []
       flash.now[:error] = "Sorry, we couldn\'t find any books for that search."
       render :search
+    elsif @books == [1]
+      flash.now[:error] = "Goodreads is currently down, please try your search again later."
+      render :search
     end
   end
 

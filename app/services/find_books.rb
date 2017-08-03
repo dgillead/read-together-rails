@@ -12,7 +12,9 @@ class FindBooks
     body = HTTP.get("https://www.goodreads.com/search/index.xml?key=#{Rails.application.secrets.goodreads_api_key}&q=#{query}").to_s
     body_hash = Hash.from_xml(body)
     body_hash = body_hash['GoodreadsResponse']['search']['results']['work']
-    if body_hash.nil? || @query == 'asdfasdf'
+    if body_hash[0]['best_book']['title'] == 'Goodreads is over capacity.'
+      return [1]
+    elsif body_hash.nil? || @query == 'asdfasdf'
       return []
     else
       book_array = get_book_info(body_hash)
