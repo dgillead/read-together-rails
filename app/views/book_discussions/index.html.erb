@@ -1,20 +1,27 @@
 <% if current_user %>
-  <p class="text-right" id="all-discussions"><%= link_to 'See Public Discussions', all_path %></p>
+
   <h2 class="text-center header-style">Discussions You've Created</h2>
 
   <hr class="discussion-divider">
 
   <% if current_user.book_discussions.any? %>
-    <ul class="list-group">
-      <% current_user.book_discussions.each do |discussion| %>
-      <li class="list-group-item text-center" id="owned-discussions">
-        <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
-        <p>By: <%= discussion.book_author %></p>
-        <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
-      </li>
-      <hr>
-      <% end %>
-    </ul>
+    <div class = "text-center center-block">
+      <button data-toggle="collapse" data-target="#discussions-created" class="btn btn-info">View</button>
+
+      <div id="discussions-created" class="collapse">
+        <ul class="list-group">
+          <% current_user.book_discussions.each do |discussion| %>
+          <li class="list-group-item text-center" id="owned-discussions">
+            <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
+            <p>By: <%= discussion.book_author %></p>
+            <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+          </li>
+          <hr>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
   <% else %>
     <p class="text-center">You haven't created any discussions yet. Search for a book to get started.</p>
   <% end %>
@@ -26,18 +33,24 @@
 
   <% if @book_discussions != [] %>
 
+    <div class = "text-center center-block">
+      <button data-toggle="collapse" data-target="#discussions-invited" class="btn btn-info">View</button>
+
+      <div id="discussions-invited" class="collapse">
         <ul class="list-group">
           <% @book_discussions.each do |discussion| %>
-          <% if discussion.discussion_participants.include?(current_user.email) %>
-          <li class="list-group-item text-center" id="invited-discussions">
-            <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
-            <p>By: <%= discussion.book_author %></p>
-            <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
-          </li>
-          <hr>
+            <% if discussion.discussion_participants.include?(current_user.email) %>
+              <li class="list-group-item text-center" id="invited-discussions">
+                <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
+                <p>By: <%= discussion.book_author %></p>
+                <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+              </li>
+              <hr>
+            <% end %>
           <% end %>
         </ul>
-    <% end %>
+      </div>
+    </div>
   <% else %>
     <p class="text-center">You haven't been invited to any discussions yet.</p>
   <% end %>

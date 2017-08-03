@@ -36,6 +36,10 @@
       </div>
     </nav>
 
+    <% if current_user %>
+      <p class="text-right" id="all-discussions"><%= link_to 'See Public Discussions', all_path %></p>
+    <% end %>
+
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: "alert alert-info text-center" %>
     <% end %>
