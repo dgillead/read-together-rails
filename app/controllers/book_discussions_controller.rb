@@ -74,6 +74,10 @@ class BookDiscussionsController < ApplicationController
   end
 
   def destroy
+    User.find_each do |user|
+      user.saved_discussions.delete(@book_discussion.id)
+      user.save
+    end
     @book_discussion.destroy
     redirect_to '/book_discussions'
   end

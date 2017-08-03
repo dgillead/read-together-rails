@@ -100,6 +100,19 @@ RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
 
       expect(response).to redirect_to('/book_discussions')
     end
+
+    it "removes the discussion from all user\'s saved discussions" do
+      sign_in(user)
+      valid_private_book_attributes[:user_id] = user.id
+      book_discussion = BookDiscussion.create!(valid_private_book_attributes)
+      book_discussion_id = book_discussion.id
+      user.saved_discussions.push(book_discussion_id)
+
+      delete :destroy, params: { id: book_discussion.to_param }
+      user.reload
+
+      expect(user.saved_discussions).to_not include(book_discussion_id)
+    end
   end
 
   describe 'GET #change_status' do
