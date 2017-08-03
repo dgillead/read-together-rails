@@ -14,6 +14,10 @@ h2.header-style {
   color: gray;
 }
 
+#save-discussion {
+  margin-bottom: 10px;
+}
+
 #book-background {
   background-image: url('/images/book.jpg');
   background-repeat: no-repeat;

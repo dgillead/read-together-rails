@@ -115,5 +115,16 @@ RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
     end
   end
 
+  describe 'GET #save' do
+    it 'saves the public discussion for the user' do
+      sign_in(user)
+      valid_private_book_attributes[:user_id] = user.id
+      book_discussion = BookDiscussion.create!(valid_private_book_attributes)
+      book_discussion[:status] = 'public'
+
+      expect { get :save, params: { id: book_discussion.to_param } }.to change{ user.reload.saved_discussions.count }.by(1)
+    end
+  end
+
   DatabaseCleaner.clean
 end

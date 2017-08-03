@@ -38,19 +38,40 @@
       <div id="discussions-invited" class="collapse">
         <ul class="list-group">
           <% @book_discussions.each do |discussion| %>
-            <% if discussion.discussion_participants.include?(current_user.email) %>
-              <li class="list-group-item text-center" id="invited-discussions">
-                <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
-                <p>By: <%= discussion.book_author %></p>
-                <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
-              </li>
-              <hr>
-            <% end %>
+            <li class="list-group-item text-center" id="invited-discussions">
+              <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
+              <p>By: <%= discussion.book_author %></p>
+              <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+            </li>
+            <hr>
           <% end %>
         </ul>
       </div>
     </div>
   <% else %>
     <p class="text-center">You haven't been invited to any discussions yet.</p>
+  <% end %>
+
+  <h2 class="text-center header-style">Discussions You've Saved</h2>
+
+  <hr class="discussion-divider">
+
+  <% if current_user.saved_discussions != [] %>
+
+    <div class = "text-center center-block">
+      <button data-toggle="collapse" data-target="#discussions-saved" class="btn btn-info">View</button>
+
+      <div id="discussions-saved" class="collapse">
+        <ul class="list-group">
+          <% @saved_discussions.each do |discussion| %>
+          <li class="list-group-item text-center" id="saved-discussions">
+            <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
+            <p>By: <%= discussion.book_author %></p>
+            <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   <% end %>
 <% end %>

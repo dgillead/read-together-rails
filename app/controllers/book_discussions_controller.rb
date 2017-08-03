@@ -1,12 +1,18 @@
 class BookDiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_discussion, only: [:show, :destroy, :invite, :change_status]
+  before_action :find_discussion, only: [:show, :destroy, :invite, :change_status, :save]
 
   def index
     @book_discussions = []
     BookDiscussion.find_each do |discussion|
       if discussion.discussion_participants.include?(current_user.email)
         @book_discussions << discussion
+      end
+    end
+    @saved_discussions = []
+    BookDiscussion.find_each do |discussion|
+      if current_user.saved_discussions.include?(discussion.id)
+        @saved_discussions << discussion
       end
     end
   end
@@ -23,6 +29,13 @@ class BookDiscussionsController < ApplicationController
 
   def all
     @book_discussions = BookDiscussion.where("status = ?", 'public')
+  end
+
+  def save
+    current_user.saved_discussions.push(@book_discussion.id)
+    current_user.save
+    flash.now[:success] = "Discussion saved. It will now show up under your saved discussions."
+    render :show
   end
 
   def search

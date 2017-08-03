@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/invite', to: 'book_discussions#invite'
   get '/all', to: 'book_discussions#all'
   get '/status', to: 'book_discussions#change_status'
+  get '/save', to: 'book_discussions#save'
+  get '/remove_saved', to: 'book_discussions#remove_saved'
 
   resources :book_discussions
   resources :sections

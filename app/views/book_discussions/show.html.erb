@@ -1,7 +1,19 @@
 <% if current_user.id == @book_discussion.user_id || @book_discussion.discussion_participants.include?(current_user.email) ||@book_discussion.status == 'public' %>
+
+  <% if @book_discussion.status == 'public' %>
+    <div class="text-center" id="save_discussion">
+      <% if current_user.saved_discussions.include?(@book_discussion.id) %>
+      <%= link_to 'Remove from Saved', remove_saved_path(id: @book_discussion.id) %>
+      <% else %>
+      <%= link_to 'Save Discussion', save_path(id: @book_discussion.id) %>
+      <% end %>
+    </div>
+  <% end %>
+
   <h1 class="text-center header-style"><%= @book_discussion.book_title %></h1>
   <p class="text-center">By: <%= @book_discussion.book_author %></p>
   <p class="text-center"><%= image_tag(@book_discussion.book_image_url, :alt => "Cover Image") %></p>
+
 
   <% if current_user.id == @book_discussion.user_id %>
     <div class="text-center">
@@ -41,7 +53,6 @@
   <% end %>
 
   <hr class="discussion-divider">
-
 
   <div id="sections-container" class="center-block">
     <% if @book_discussion.sections == [] && @book_discussion.user_id != current_user.id %>
