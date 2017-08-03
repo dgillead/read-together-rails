@@ -28,7 +28,7 @@ $ bundle exec rails db:migrate
 ```
 
 4. In order for the site to work on your localhost, you'll need to create some environment variables for the ActionMailer info as well as the Goodreads API.
-  * For ActionMailer, I would suggest creating a throwaway e-mail address.
+  * For ActionMailer, I would suggest creating a throwaway gmail e-mail address, as you'll have to go into the gmail account settings and allow less secure apps to access the account in order for the invite functionality to work.
   * Once the e-mail address is created, set the password of the e-mail address to an environment variable named readtogether_email, and the password to an environment variable named readtogether_pass.
   * Head over to https://www.goodreads.com/api and request an API key.
   * Once you have your key, set the key to an environment variable name goodreads_key.
