@@ -48,7 +48,8 @@ h2.header-style {
 }
 
 #owned-discussions,
-#invited-discussions {
+#invited-discussions,
+#saved-discussions {
   border: none;
 }
 
