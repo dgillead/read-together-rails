@@ -70,8 +70,8 @@ Rails.application.configure do
     :address        => 'smtp.gmail.com',
     :domain         => 'mail.google.com',
     :port           => 587,
-    :user_name      => 'dgillcasual@gmail.com',
-    :password       => 'K1nd3r12!',
+    :user_name      => ENV['readtogether_email'],
+    :password       => ENV['readtogether_pass'],
     :authentication => :plain,
     :enable_starttls_auto => true
   }

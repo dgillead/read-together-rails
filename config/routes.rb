@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :comments
 
   get '*unmatched_route', to: 'application#not_found'
+
+  default_url_options :host => "localhost:3000"
 end
