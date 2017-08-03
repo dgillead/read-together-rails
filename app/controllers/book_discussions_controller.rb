@@ -1,6 +1,6 @@
 class BookDiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_discussion, only: [:show, :destroy, :invite, :change_status, :save]
+  before_action :find_discussion, only: [:show, :destroy, :invite, :change_status, :save, :remove_saved]
 
   def index
     @book_discussions = []
@@ -34,7 +34,14 @@ class BookDiscussionsController < ApplicationController
   def save
     current_user.saved_discussions.push(@book_discussion.id)
     current_user.save
-    flash.now[:success] = "Discussion saved. It will now show up under your saved discussions."
+    flash.now[:success] = 'Discussion saved. It will now show up under your saved discussions.'
+    render :show
+  end
+
+  def remove_saved
+    current_user.saved_discussions.delete(@book_discussion.id)
+    current_user.save
+    flash.now[:success] = 'Discussion removed from your saved discussions.'
     render :show
   end
 
