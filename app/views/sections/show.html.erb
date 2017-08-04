@@ -4,38 +4,11 @@
 <p class="text-center"><%= image_tag(@section.book_discussion.book_image_url, :alt => "Cover Image") %></p>
 
 <% if @section.book_discussion.user_id == current_user.id %>
-
-  <div class="text-center">
-    <div class="dropdown">
-      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Options
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><%= link_to 'Delete Section', section_path(@section), method: :delete, data: {confirm: "Are you sure? This will delete all comments for this section as well."} %></li>
-        <li><%= link_to 'Edit Section', edit_section_path(@section) %></li>
-      </ul>
-    </div>
-  </div>
-
+  <%= render 'options', { section: @section } %>
 <% end %>
 
 <hr class="discussion-divider">
+
 <div id="disqus-container" class="center-block">
-  <div id="disqus_thread"></div>
-  <script>
-  var disqus_config = function () {
-    s.src = '//readtogether-1.disqus.com/embed.js';
-            this.page.url = '<%= url_for(@section) %>';
-            this.page.identifier = '<%= @section.id %>';
-            this.page.title = '<%= @section.title %><%= current_user.email %>';
-  };
-  (function() { // DON'T EDIT BELOW THIS LINE
-  var d = document, s = d.createElement('script');
-  s.src = '//readtogether-1.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <%= render 'disqus', { section: @section } %>
 </div>

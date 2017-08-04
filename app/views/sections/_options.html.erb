@@ -1,0 +1,12 @@
+<div class="text-center">
+  <div class="dropdown">
+    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Options
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><%= link_to 'Delete Section', section_path(section), method: :delete, data: {confirm: "Are you sure? This will delete all comments for this section as well."} %></li>
+      <li><%= link_to 'Edit Section', edit_section_path(section) %></li>
+    </ul>
+  </div>
+</div>
