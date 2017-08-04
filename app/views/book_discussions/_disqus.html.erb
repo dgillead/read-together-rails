@@ -1,0 +1,18 @@
+<h2 class="text-center">General Discussion</h2>
+
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+  s.src = '//readtogether-1.disqus.com/embed.js';
+          this.page.url = '<%= url_for(book_discussion) %>';
+          this.page.identifier = '<%= book_discussion.id %>';
+          this.page.title = '<%= book_discussion.book_title %><%= current_user.email %>';
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//readtogether-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

@@ -3,9 +3,16 @@
 <% elsif book_discussion.sections == [] && book_discussion.user_id == current_user.id %>
   <p class="text-center">You have not created any discussion sections for this book yet. Select "Create Section" under options to get started.</p>
 <% else %>
-  <ul class="list-group text-center">
-    <% book_discussion.sections.all.each do |section| %>
-      <li class=list-group-item><%= link_to section.title, section %></li>
-      <% end %>
-  </ul>
+  <h2 class="text-center">Discussion Sections</h2>
+  <div class="text-center">
+    <button data-toggle="collapse" data-target="#discussion-sections" class="btn btn-info">View</button>
+
+    <div id="discussion-sections" class="collapse">
+      <ul class="list-group text-center">
+        <% book_discussion.sections.all.each do |section| %>
+          <li class=list-group-item><%= link_to section.title, section %></li>
+          <% end %>
+      </ul>
+    </div>
+  </div>
 <% end %>

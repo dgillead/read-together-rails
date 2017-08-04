@@ -19,6 +19,12 @@
     <%= render 'section', { book_discussion: @book_discussion } %>
   </div>
 
+  <hr class="discussion-divider">
+
+  <div class="disqus-container center-block">
+    <%= render 'disqus', { book_discussion: @book_discussion } %>
+  </div>
+
 <% else %>
   <h1 class="text-center header-style">Sorry, you're not permitted to view this discussion.</h1>
 <% end %>
