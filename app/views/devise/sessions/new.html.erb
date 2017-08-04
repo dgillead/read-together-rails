@@ -1,8 +1,9 @@
-<h2 class="text-center header-style">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="text-left user-container">
+  <div class="text-center user-container">
+    <h1 class="header-style">Log in</h1>
+
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, class: "form-input", required: "required" %>

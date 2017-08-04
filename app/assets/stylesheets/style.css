@@ -58,7 +58,7 @@ h2.header-style {
 }
 
 .user-container {
-  width: 15%;
+  width: 65%;
   margin: 0 auto;
 }
 
@@ -90,7 +90,7 @@ a:visited {
 }
 
 .form-input {
-  width: 100%;
+  width: 85%;
 }
 
 #book-background .jumbotron {
@@ -121,5 +121,11 @@ hr.discussion-divider:after {
         margin-left: 25px;
         margin-right: 25px;
         margin-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 680px) {
+    .form-input {
+      width: 40%
     }
 }
