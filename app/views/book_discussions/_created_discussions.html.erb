@@ -1,0 +1,17 @@
+<div class = "text-center center-block">
+  <button data-toggle="collapse" data-target="#discussions-created" class="btn btn-info">View</button>
+
+  <div id="discussions-created" class="collapse">
+    <ul class="list-group">
+      <% user_discussions.each do |discussion| %>
+      <li class="list-group-item text-center" id="owned-discussions">
+        <p class="bigger-links"><%= link_to discussion.book_title, discussion %></p>
+        <p>By: <%= discussion.book_author %></p>
+        <p><%= image_tag(discussion.book_image_url, :alt => "Cover Image") %></p>
+      </li>
+      <hr>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
