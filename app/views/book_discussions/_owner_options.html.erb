@@ -1,0 +1,34 @@
+<div class="text-center">
+  <div class="dropdown">
+    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Options
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><%= link_to 'Delete Discussion', book_discussion_path(book_discussion), method: :delete, data: {confirm: "Are you sure? This will delete all sections and comments for this discussion as well."} %></li>
+      <li><%= link_to 'Create Section', new_section_path(book_discussion_id: book_discussion.id) %></li>
+      <% if book_discussion.status == 'public' %>
+        <li><%= link_to 'Make Private', status_path(id: book_discussion.id) %></li>
+      <% else %>
+        <li><%= link_to 'Make Public', status_path(id: book_discussion.id) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div id="invite-container" class="center-block text-center">
+  <button data-toggle="collapse" data-target="#invite" class="btn btn-info">Invite User</button>
+
+  <div id="invite" class="collapse">
+    <br>
+    <%= render 'invite_form', { book_discussion: book_discussion } %>
+  </div>
+</div>
+
+<div class="text-center" id="discussion-status-container">
+  <% if book_discussion.status == 'public' %>
+    <p>This discussion is currently <strong>public</strong>, which means any users can see this discussion and comment on discussion sections you create. You can change this under options.</p>
+  <% else %>
+    <p>This discussion is currently <strong>private</strong>, which means only users you invite can see this discussion and comment on discussion sections you create. You can change this under options.</p>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+<div class="text-center" id="save_discussion">
+  <% if current_user.saved_discussions.include?(book_discussion.id) %>
+    <%= link_to 'Remove from Saved', remove_saved_path(id: book_discussion.id) %>
+  <% else %>
+    <%= link_to 'Save Discussion', save_path(id: book_discussion.id) %>
+  <% end %>
+</div>
