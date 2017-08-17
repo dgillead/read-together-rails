@@ -26,6 +26,10 @@ h2.header-style {
   background-size: cover;
 }
 
+#search-discussions-form {
+  width: 50%;
+}
+
 .disqus-container {
   width: 70%;
 }

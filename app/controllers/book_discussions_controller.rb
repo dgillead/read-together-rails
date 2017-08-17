@@ -56,6 +56,10 @@ class BookDiscussionsController < ApplicationController
     end
   end
 
+  def search_discussions
+    @book_discussions = BookDiscussion.where("lower(book_title) LIKE ? AND status = 'public'", "%#{params[:q].downcase}%")
+  end
+
   def create
     @book_discussion = current_user.book_discussions.new(book_params)
     @book_discussion[:status] = 'private'

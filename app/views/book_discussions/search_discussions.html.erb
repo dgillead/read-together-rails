@@ -1,9 +1,7 @@
-<h1 class="text-center header-style">All Public Discussions</h1>
-
-<hr class="discussion-divider">
+<h1 class="text-center header-style">Search Results</h1>
 
 <% if @book_discussions == [] %>
-  <p class="text-center">No public discussions exist. You can create your own private discussion and invite your friends or set it to public to allow anyone to participate. <br> To create a discussion first search for a book you would like to discuss.</p>
+  <p class="text-center">No discussions could be found</p>
 <% else %>
   <%= render 'search_public' %>
 

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   root to: 'home#index'
   get '/search', to: 'book_discussions#search'
+  get '/search_discussions', to: 'book_discussions#search_discussions'
   get '/invite', to: 'book_discussions#invite'
   get '/all', to: 'book_discussions#all'
   get '/status', to: 'book_discussions#change_status'
