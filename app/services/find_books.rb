@@ -12,10 +12,13 @@ class FindBooks
     body = HTTP.get("https://www.goodreads.com/search/index.xml?key=#{ENV['goodreads_key']}&q=#{query}").to_s
     body_hash = Hash.from_xml(body)
     body_hash = body_hash['GoodreadsResponse']['search']['results']['work']
-    if body_hash[0]['best_book']['title'] == 'Goodreads is over capacity.'
-      return [1]
-    elsif body_hash.nil? || @query == 'asdfasdf'
+    if !body_hash.is_a?(Array)
+      body_hash = [body_hash]
+    end
+    if body_hash == [nil] || @query == 'asdfasdf'
       return []
+    elsif body_hash[0]['best_book']['title'] == 'Goodreads is over capacity. Please try your search again later.'
+      return [1]
     else
       book_array = get_book_info(body_hash)
     end
