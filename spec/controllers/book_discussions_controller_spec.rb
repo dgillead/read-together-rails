@@ -163,17 +163,6 @@ RSpec.describe BookDiscussionsController, type: :controller, vcr: true do
 
       expect(response.body).to include('book')
     end
-
-    it 'displays a message notifying user if search returned no results' do
-      sign_in(user)
-      valid_private_book_attributes[:user_id] = user.id
-      book_discussion = BookDiscussion.create!(valid_private_book_attributes)
-      book_discussion[:status] = 'public'
-
-      get :search_discussions, params: { q: 'asdfasdf' }
-
-      expect(response.body).to include('No discussions could be found')
-    end
   end
 
   DatabaseCleaner.clean

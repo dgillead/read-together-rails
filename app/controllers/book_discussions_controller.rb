@@ -58,6 +58,9 @@ class BookDiscussionsController < ApplicationController
 
   def search_discussions
     @book_discussions = BookDiscussion.where("lower(book_title) LIKE ? AND status = 'public'", "%#{params[:q].downcase}%")
+    if @book_discussions == []
+      flash.now[:error] = "Sorry, we couldn\'t find any public book discussions for that search."
+    end
   end
 
   def create
